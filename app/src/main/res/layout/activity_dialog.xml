@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <FrameLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/dialog_margin"
+            android:layout_marginLeft="@dimen/dialog_margin"
+            android:layout_marginRight="@dimen/dialog_margin"
+            android:layout_marginStart="@dimen/dialog_margin"
+            android:background="?android:colorBackground"
+            android:elevation="@dimen/dialog_elevation"
+            android:orientation="vertical"
+            android:transitionName="morph_transition">
+
+        </LinearLayout>
+
+    </FrameLayout>
+</layout>
