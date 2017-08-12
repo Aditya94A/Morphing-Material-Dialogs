@@ -3,7 +3,7 @@
 # Morphing Material Dialogs
 A minimal proof of concept showcasing fab-to-dialog morphing (as in Nick Butcher's [Plaid](https://github.com/nickbutcher/plaid)) with Aidan Follestad's [Material Dialogs](https://github.com/afollestad/material-dialogs).
 
-# How it works
+## How it works
 
 1. Create an activity for the dialog with a skeleton layout xml file
 2. Pass the dialog parameters (title, content etc.) along with the intent bundle and start the activity
