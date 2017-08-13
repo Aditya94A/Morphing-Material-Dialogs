@@ -10,3 +10,8 @@ A minimal proof of concept showcasing fab-to-dialog morphing (as in Nick Butcher
 3. [Create a MaterialDialog](https://github.com/AdityaAnand1/Morphing-Material-Dialogs/blob/master/app/src/main/java/com/aditya/morph/DialogActivity.java#L40) in the dialog activity, stick it's root view reference [inside our skeleton layout](https://github.com/AdityaAnand1/Morphing-Material-Dialogs/blob/master/app/src/main/java/com/aditya/morph/DialogActivity.java#L52)
 4. ~~[Black magic](https://github.com/AdityaAnand1/Morphing-Material-Dialogs/tree/master/app/src/main/java/com/aditya/morph/util).~~ Set up shared elements transitions for morphing to a dialog from a floating action button and vice versa
 5. Profit.
+
+
+----
+
+P.S: I'm trying to turn this into a library, will update soon :)
