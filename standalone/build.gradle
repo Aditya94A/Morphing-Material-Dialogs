@@ -1,13 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.1"
-
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.xeus.morphingmaterialdialogs"
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
         dataBinding.enabled = true
@@ -23,14 +22,13 @@ android {
         sourceCompatibility 1.8
     }
 }
-ext.supportLibVersion = '26.0.1'
+ext.supportLibVersion = '25.3.1'
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:26.0.1'
-    implementation "com.android.support:design:26.0.1"
-    implementation "com.android.support:support-v13:${supportLibVersion}"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:appcompat-v7:${supportLibVersion}"
+    implementation "com.android.support:design:${supportLibVersion}"
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     compile "com.android.support:gridlayout-v7:${supportLibVersion}"
-    implementation project(':library')
+    implementation 'com.afollestad.material-dialogs:core:0.9.4.5'
 }

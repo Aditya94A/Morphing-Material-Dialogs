@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.aditya.morph.util;
+package in.adityaanand.morphdialog.morphutil;
 
 import android.annotation.TargetApi;
 import android.graphics.Canvas;

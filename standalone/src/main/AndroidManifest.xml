@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppBaseTheme">
-        <activity android:name="in.adityaanand.morphdialogsample.MainActivity">
+        <activity android:name="com.aditya.morphdialogstandalone.in.aditya.morphdialogstandalone.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -17,12 +17,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="in.adityaanand.morphdialog.MorphDialogActivity"
-            android:theme="@style/MorphDialog.Custom.Light">
-        </activity>
-        <activity
-            android:name="in.adityaanand.morphdialog.MorphDialogActivityDark"
-            android:theme="@style/MorphDialog.Custom.Dark">
+            android:name="com.aditya.morphdialogstandalone.in.aditya.morphdialogstandalone.DialogActivity"
+            android:theme="@style/MorphDialog.Light">
         </activity>
     </application>
 

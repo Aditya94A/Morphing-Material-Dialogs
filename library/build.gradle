@@ -1,20 +1,23 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.AdityaAnand1'
 
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
 
     defaultConfig {
-        applicationId "com.xeus.morphingmaterialdialogs"
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         dataBinding.enabled = true
+
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -23,14 +26,10 @@ android {
         sourceCompatibility 1.8
     }
 }
-ext.supportLibVersion = '26.0.1'
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:26.0.1'
     implementation "com.android.support:design:26.0.1"
-    implementation "com.android.support:support-v13:${supportLibVersion}"
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile "com.android.support:gridlayout-v7:${supportLibVersion}"
-    implementation project(':library')
+    implementation 'com.afollestad.material-dialogs:core:0.9.4.6'
 }

@@ -1,9 +1,6 @@
-package com.aditya.morph;
+package in.adityaanand.morphdialog;
 
 import android.app.Activity;
-import android.app.ActivityOptions;
-import android.content.Context;
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -11,30 +8,29 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.transition.ArcMotion;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
 
-import com.aditya.morph.databinding.ActivityDialogBinding;
-import com.aditya.morph.util.MorphDialogToFab;
-import com.aditya.morph.util.MorphFabToDialog;
+import com.aditya1.morphingmaterialdialogs.R;
+import com.aditya1.morphingmaterialdialogs.databinding.ActivityDialogBinding;
 import com.afollestad.materialdialogs.MaterialDialog;
 
+import in.adityaanand.morphdialog.morphutil.MorphDialogToFab;
+import in.adityaanand.morphdialog.morphutil.MorphFabToDialog;
 
-public class DialogActivity extends AppCompatActivity {
+
+public class MorphDialogActivity extends AppCompatActivity {
 
     ActivityDialogBinding ui;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //set theme to dark if you want
-        //setTheme(shouldUseDarkTheme() ? R.style.MorphDialog_Dark : R.style.MorphDialog_Light);
         ui = DataBindingUtil.setContentView(this, R.layout.activity_dialog);
         Bundle params = getIntent().getExtras();        //get the text and add to MaterialDialog if !null
-        CharSequence content = params.getCharSequence("content");
-        String title = params.getString("title"),
+        CharSequence content = params.getCharSequence("content"),
+                title = params.getString("title"),
                 positive = params.getString("positive"),
                 negative = params.getString("negative");
         MaterialDialog.Builder builder = new MaterialDialog.Builder(this)
@@ -61,7 +57,8 @@ public class DialogActivity extends AppCompatActivity {
     }
 
     public void setupSharedEelementTransitions() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) return; //Show dialog normally if below Lollipop
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
+            return; //Show dialog normally if below Lollipop
         ArcMotion arcMotion = new ArcMotion();
         arcMotion.setMinimumHorizontalAngle(50f);
         arcMotion.setMinimumVerticalAngle(50f);
@@ -104,24 +101,4 @@ public class DialogActivity extends AppCompatActivity {
         else finish();
     }
 
-
-    private static Intent getIntent(Context context, String title, CharSequence content,
-                                    String positive, String negative) {
-        Intent intent = new Intent(context, DialogActivity.class);
-        intent.putExtra("title", title);
-        intent.putExtra("content", content.toString());
-        intent.putExtra("positive", positive);
-        intent.putExtra("negative", negative);
-        return intent;
-    }
-
-    public static void open(AppCompatActivity context, View fab, String title, CharSequence content) {
-        Intent intent = getIntent(context, title, content, null, "OK");
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(context, fab, "morph_transition");
-            context.startActivityForResult(intent, 1, options.toBundle());
-        } else
-            context.startActivityForResult(intent, 1);
-    }
 }
