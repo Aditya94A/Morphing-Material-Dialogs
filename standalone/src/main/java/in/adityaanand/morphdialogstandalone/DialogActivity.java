@@ -16,11 +16,11 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
 
-import com.aditya.morphdialogstandalone.R;
-import com.aditya.morphdialogstandalone.databinding.ActivityDialogBinding;
+import com.afollestad.materialdialogs.MaterialDialog;
+
+import in.adityaanand.morphdialogstandalone.databinding.ActivityDialogBinding;
 import in.adityaanand.morphdialogstandalone.util.MorphDialogToFab;
 import in.adityaanand.morphdialogstandalone.util.MorphFabToDialog;
-import com.afollestad.materialdialogs.MaterialDialog;
 
 
 public class DialogActivity extends AppCompatActivity {
@@ -62,7 +62,8 @@ public class DialogActivity extends AppCompatActivity {
     }
 
     public void setupSharedEelementTransitions() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) return; //Show dialog normally if below Lollipop
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
+            return; //Show dialog normally if below Lollipop
         ArcMotion arcMotion = new ArcMotion();
         arcMotion.setMinimumHorizontalAngle(50f);
         arcMotion.setMinimumVerticalAngle(50f);

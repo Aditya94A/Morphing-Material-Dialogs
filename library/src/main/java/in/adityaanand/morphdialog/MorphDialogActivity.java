@@ -12,10 +12,9 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
 
-import com.aditya1.morphingmaterialdialogs.R;
-import com.aditya1.morphingmaterialdialogs.databinding.ActivityDialogBinding;
 import com.afollestad.materialdialogs.MaterialDialog;
 
+import in.adityaanand.morphdialog.databinding.ActivityDialogBinding;
 import in.adityaanand.morphdialog.morphutil.MorphDialogToFab;
 import in.adityaanand.morphdialog.morphutil.MorphFabToDialog;
 
@@ -100,5 +99,4 @@ public class MorphDialogActivity extends AppCompatActivity {
             finishAfterTransition();
         else finish();
     }
-
 }

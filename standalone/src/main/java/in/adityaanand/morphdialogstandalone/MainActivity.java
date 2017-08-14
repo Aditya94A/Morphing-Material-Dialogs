@@ -5,8 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.aditya.morphdialogstandalone.R;
-import com.aditya.morphdialogstandalone.databinding.ActivityMainBinding;
+import in.adityaanand.morphdialogstandalone.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 

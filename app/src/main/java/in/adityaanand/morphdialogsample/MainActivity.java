@@ -6,12 +6,10 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.aditya.morphdialogstandalone.R;
-import com.aditya.morphdialogstandalone.databinding.ActivityMainBinding;
-
 import java.util.Random;
 
 import in.adityaanand.morphdialog.MorphDialog;
+import in.adityaanand.morphdialogsample.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 

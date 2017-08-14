@@ -29,7 +29,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 
-import com.aditya1.morphingmaterialdialogs.R;
+import in.adityaanand.morphdialog.R;
 
 
 /**

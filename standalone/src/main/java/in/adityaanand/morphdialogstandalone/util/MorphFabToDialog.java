@@ -30,7 +30,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 
-import com.aditya.morphdialogstandalone.R;
+import in.adityaanand.morphdialogstandalone.R;
 
 
 /**
