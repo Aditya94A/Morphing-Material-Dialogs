@@ -106,12 +106,12 @@ P.S: We're at v0.0.1-alpha2 pre-release. Except things to change and break and e
 
 #### What happens below API 21 (<Lollipop)?
 
-Nothing. Since this library uses activity transitions which are properly supported only for Lollipop and up, the dialog pops up normally without any morphing animation.
+Nothing. Since this library uses activity transitions which are properly supported only for Lollipop and up, the dialog pops up normally without any morphing animation below Lollipop.
 
 #### Why does the library not support all of Material Dialogs features?
 
-Doing so will mean that this library would have to duplicate the entire API of MaterialDialogs. I'm looking for a cleaner and leaner alternative as to how to accomplish this ([Suggestions  welcome](https://github.com/AdityaAnand1/Morphing-Material-Dialogs/issues/new))
+Doing so will mean that this library would have to duplicate the entire API of MaterialDialogs. I'm currently looking for a cleaner and leaner alternative to accomplishing this ([Suggestions welcome](https://github.com/AdityaAnand1/Morphing-Material-Dialogs/issues/new))
 
 #### I want to morph **from something other than a fab**/ I want to morph **to something other than MorphDialog**
 
-Currently, this library does not support anything other than a fab-to-morphdialog transition. If you'd like for it to work in another setting, say a custom view, head over to the [standalone](https://github.com/AdityaAnand1/Morphing-Material-Dialogs/tree/master/standalone) and check out the minimal implementation that lead to the MorphDialog library. Although, I'm open to all ideas, including turning this into a generic morph-anything-to-anything library but doing so may or may not even be possible. [Suggestions  welcome](https://github.com/AdityaAnand1/Morphing-Material-Dialogs/issues/new)
+Currently, this library does not support something-other-than-a-fab-to-something-other-than-a-material-dialog transition. If you'd like for it to work in another setting, say a custom view, head over to the [standalone](https://github.com/AdityaAnand1/Morphing-Material-Dialogs/tree/master/standalone) and check out the minimal implementation that will point you in the direction of a custom solution. Although, I'm certainly open to all ideas, including turning this into a generic morph-anything-to-anything library but doing so may or may not even be possible. [Suggestions welcome](https://github.com/AdityaAnand1/Morphing-Material-Dialogs/issues/new)
