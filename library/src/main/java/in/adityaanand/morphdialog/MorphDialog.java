@@ -9,6 +9,8 @@ import in.adityaanand.morphdialog.util.Utils;
 
 public class MorphDialog {
 
+    public static final int REQUEST_CODE = 7324;
+
     /* // TODO: 14-Aug-17 not sure if we'll need this?
     private CharSequence title, content, positiveText, negativeText;
 

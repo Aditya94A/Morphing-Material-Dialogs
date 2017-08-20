@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.view.View;
 
+import in.adityaanand.morphdialog.MorphDialog;
 import in.adityaanand.morphdialog.MorphDialogActivity;
 import in.adityaanand.morphdialog.MorphDialogActivityDark;
 
@@ -28,8 +29,8 @@ public class Utils {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(activity, fab, "morph_transition");
-            activity.startActivityForResult(intent, 1, options.toBundle());
+            activity.startActivityForResult(intent, MorphDialog.REQUEST_CODE, options.toBundle());
         } else
-            activity.startActivityForResult(intent, 1);
+            activity.startActivityForResult(intent, MorphDialog.REQUEST_CODE);
     }
 }

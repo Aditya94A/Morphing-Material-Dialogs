@@ -53,6 +53,8 @@ public class MorphDialogActivity extends AppCompatActivity {
         });
 
         setupSharedEelementTransitions();
+
+        new MaterialDialog.Builder(this);
     }
 
     public void setupSharedEelementTransitions() {
