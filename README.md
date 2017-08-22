@@ -108,7 +108,7 @@ Then your `morph()` might look like:
 
 ## Misc
 
-P.S: We're at v0.0.1-alpha2 pre-release. Except things to change and break and evolve :)
+P.S: We're at v0.0.1-alpha2 pre-release. Expect things to change and break and evolve :)
 
 #### What happens below API 21 (<Lollipop)?
 
