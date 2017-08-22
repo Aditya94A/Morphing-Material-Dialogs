@@ -1,6 +1,12 @@
 <img src="screenies/1.gif" width="300" align="right" hspace="20">
 
 # Morphing Material Dialogs
+[![Release](https://jitpack.io/v/AdityaAnand1/Morphing-Material-Dialogs.svg)](https://jitpack.io/#AdityaAnand1/Morphing-Material-Dialogs)
+[![Build Status](https://travis-ci.org/AdityaAnand1/Morphing-Material-Dialogs.svg)](https://travis-ci.org/AdityaAnand1/Morphing-Material-Dialogs)
+[![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/AdityaAnand1/Morphing-Material-Dialog/blob/master/LICENSE.txt)
+
+
+
 A library for fab-to-dialog morphing (as in Nick Butcher's [Plaid](https://github.com/nickbutcher/plaid)) with Aidan Follestad's [Material Dialogs](https://github.com/afollestad/material-dialogs).
 
 # Table of Contents
