@@ -69,13 +69,16 @@ In your styles.xml, override the MorphDialog.Base themes (at least one, both if 
  
  ## Usage instructions
  
-This library mirror's a subset of [afollestad/material-dialogs](https://github.com/afollestad/material-dialogs) API. Currently, you can specify the title, content, positive button text and negative button text (all as CharSequences or string resource IDs).
+This library mirror's a subset of [afollestad/material-dialogs](https://github.com/afollestad/material-dialogs) API.
   
  ```java
  new MorphDialog.Builder(this, fabView)
                 .title("Title")
                 .content("This is a sentence. Here is another one.") 
                 .positiveText(R.string.ok)
+                .onPositive((MorphDialog dialog1, MorphDialogAction which) -> {
+                    Toast.makeText(this, "onPositive", Toast.LENGTH_SHORT).show();
+                })
                 .useDarkTheme(true) //optional, default is false
                 .show();
  ```
@@ -102,8 +105,6 @@ Then your `morph()` might look like:
 ```
 
 ## Customization
-
-Here we'll look at everything you can do with MorphDialogs.
 
 ### Listen for action button callbacks
 
