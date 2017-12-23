@@ -25,6 +25,7 @@
 #-renamesourcefileattribute SourceFile
 -dontwarn java.lang.invoke**
 -dontwarn android.databinding.**
+-keep class android.databinding.** { *; }
 -keep class in.adityaanand.morphdialog.databinding.** {
     <fields>;
     <methods>;
