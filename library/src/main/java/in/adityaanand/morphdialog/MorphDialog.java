@@ -14,6 +14,8 @@ import android.support.design.widget.FloatingActionButton;
 
 import com.afollestad.materialdialogs.util.DialogUtils;
 
+import java.util.Random;
+
 import in.adityaanand.morphdialog.interfaces.MorphSingleButtonCallback;
 import in.adityaanand.morphdialog.utils.MorphDialogAction;
 
@@ -24,13 +26,18 @@ public class MorphDialog {
 
     private static final int REQUEST_CODE = 7324;
     //todo How do we let other devs know that this ^ is mine to avoid conflict?
-
+    private final long id;
     private Builder builder;
 
     private MorphDialog(Builder builder) {
         this.builder = builder;
+        //generate a unique ID for each dialog
+        long temp;
+        do {
+            temp = new Random().nextLong();
+        } while (temp == 0);
+        id = temp;
     }
-
 
     public void setBuilder(Builder builder) {
         this.builder = builder;
@@ -40,9 +47,13 @@ public class MorphDialog {
         return builder;
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode != REQUEST_CODE || data == null || resultCode != Activity.RESULT_OK) //this is not ours
+    private void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (builder == null || requestCode != REQUEST_CODE || data == null || resultCode != Activity.RESULT_OK) //this is not ours
             return;
+        long id = data.getLongExtra("morph_id", 0);
+        if (this.id != id)
+            return; //this is some other dialogs call back
+
         MorphDialogAction tag = (MorphDialogAction) data.getSerializableExtra("actionType");
 
         switch (tag) {
@@ -71,7 +82,8 @@ public class MorphDialog {
     public MorphDialog show() {
         Intent intent = new Intent(builder.activity, builder.data.getDarkTheme() ?
                 MorphDialogActivityDark.class : MorphDialogActivity.class);
-        intent.putExtra("data", builder.data);
+        intent.putExtra("morph_data", builder.data);
+        intent.putExtra("morph_id", id);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(
                     builder.activity, builder.fab, "morph_transition");
@@ -81,9 +93,26 @@ public class MorphDialog {
         return this;
     }
 
-    public static void registerOnActivityResult(int requestCode, int resultCode, Intent data, MorphDialog... dialogs) {
-        for (MorphDialog dialog : dialogs) {
-            dialog.onActivityResult(requestCode, resultCode, data);
+    public static Registerer registerOnActivityResult(int requestCode, int resultCode, Intent data) {
+        return new Registerer(requestCode, resultCode, data);
+    }
+
+    public static class Registerer {
+        int requestCode;
+        int resultCode;
+        Intent data;
+
+        public Registerer(int requestCode, int resultCode, Intent data) {
+            this.requestCode = requestCode;
+            this.resultCode = resultCode;
+            this.data = data;
+        }
+
+        public void forDialogs(MorphDialog... dialogs) {
+            if (requestCode == MorphDialog.REQUEST_CODE)
+                for (MorphDialog dialog : dialogs)
+                    if (dialog != null)
+                        dialog.onActivityResult(requestCode, resultCode, data);
         }
     }
 

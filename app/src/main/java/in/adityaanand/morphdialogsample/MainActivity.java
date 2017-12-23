@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        dialog.onActivityResult(requestCode, resultCode, data);
+        MorphDialog.registerOnActivityResult(requestCode, resultCode, data)
+                .forDialogs(dialog);
     }
 }
