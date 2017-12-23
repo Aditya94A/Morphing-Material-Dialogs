@@ -155,7 +155,7 @@ If you have a large number of dialogs you may prefer to use the helper function 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-	MorphDialog.registerOnActivityResult(requestCode, resultCode, data, dialog1, dialog2, dialog3); //add all your dialogs here
+	MorphDialog.registerOnActivityResult(requestCode, resultCode, data, dialog1, dialog2, dialog3);
     }
 ```
 
@@ -189,8 +189,6 @@ Override the `android:windowBackground` attribute to provide a custom color for 
 
 
 ## Misc
-
-P.S: We're at v0.0.1-alpha2 pre-release. Expect things to change and break and evolve :)
 
 #### What happens below API 21 (<Lollipop)?
 
