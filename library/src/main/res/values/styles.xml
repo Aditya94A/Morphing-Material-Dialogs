@@ -1,26 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
-
-    <dimen name="dialog_margin">32dp</dimen>
-    <dimen name="dialog_corners">4dp</dimen>
-    <dimen name="dialog_elevation">6dp</dimen>
-
-    <dimen name="button_corners">4dp</dimen>
-
     <style name="MorphDialog.Base.Light" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@color/dialog_background_scrim</item>
         <item name="android:backgroundDimEnabled">true</item>
+        <item name="morph_dialog_background_color">?android:colorBackground</item>
     </style>
 
     <style name="MorphDialog.Base.Dark" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@color/dialog_background_scrim</item>
         <item name="android:backgroundDimEnabled">true</item>
+        <item name="morph_dialog_background_color">?android:colorBackground</item>
     </style>
 
-
-    <color name="fab_background_color">#FF5252</color>
     <color name="dialog_background_scrim">#00323232</color>
 </resources>

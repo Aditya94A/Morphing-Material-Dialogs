@@ -69,7 +69,7 @@ public class MorphDialogToFab extends ChangeBounds {
         }
         transitionValues.values.put(PROPERTY_COLOR, backgroundColor);
         transitionValues.values.put(PROPERTY_CORNER_RADIUS, view.getResources()
-                .getDimensionPixelSize(R.dimen.dialog_corners));
+                .getDimensionPixelSize(R.dimen.default_dialog_corners));
     }
 
     @Override

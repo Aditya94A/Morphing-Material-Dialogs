@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dialog_margin">32dp</dimen>
+    <dimen name="default_dialog_corners">4dp</dimen>
+    <dimen name="default_dialog_elevation">6dp</dimen>
+</resources>
