@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
+        <item name="android:fitsSystemWindows">true</item>
     </style>
 
     <style name="AppBaseThemeLight" parent="Theme.AppCompat.Light.NoActionBar">

@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 .cancelable(false)
                 .contentColor(Color.BLUE)
                 .backgroundColor(Color.GREEN)
-                .neutralColor(Color.BLUE)
+                .neutralColorRes(R.color.primary)
                 .positiveColor(Color.BLACK)
                 .titleColor(Color.YELLOW)
                 .useDarkTheme(new Random().nextBoolean())

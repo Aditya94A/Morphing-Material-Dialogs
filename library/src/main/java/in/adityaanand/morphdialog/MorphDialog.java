@@ -25,10 +25,19 @@ public class MorphDialog {
     private static final int REQUEST_CODE = 7324;
     //todo How do we let other devs know that this ^ is mine to avoid conflict?
 
-    private final Builder builder;
+    private Builder builder;
 
     private MorphDialog(Builder builder) {
         this.builder = builder;
+    }
+
+
+    public void setBuilder(Builder builder) {
+        this.builder = builder;
+    }
+
+    public Builder getBuilder() {
+        return builder;
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -70,6 +79,12 @@ public class MorphDialog {
         } else
             builder.activity.startActivityForResult(intent, MorphDialog.REQUEST_CODE);
         return this;
+    }
+
+    public static void registerOnActivityResult(int requestCode, int resultCode, Intent data, MorphDialog... dialogs) {
+        for (MorphDialog dialog : dialogs) {
+            dialog.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     public static class Builder {
