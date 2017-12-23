@@ -25,6 +25,7 @@ import in.adityaanand.morphdialog.utils.MorphDialogAction;
 public class MorphDialog {
 
     private static final int REQUEST_CODE = 7324;
+
     //todo How do we let other devs know that this ^ is mine to avoid conflict?
     private final long id;
     private Builder builder;
@@ -50,11 +51,11 @@ public class MorphDialog {
     private void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (builder == null || requestCode != REQUEST_CODE || data == null || resultCode != Activity.RESULT_OK) //this is not ours
             return;
-        long id = data.getLongExtra("morph_id", 0);
+        long id = data.getLongExtra(Constants.MORPH_DIALOG_ID, 0);
         if (this.id != id)
             return; //this is some other dialogs call back
 
-        MorphDialogAction tag = (MorphDialogAction) data.getSerializableExtra("actionType");
+        MorphDialogAction tag = (MorphDialogAction) data.getSerializableExtra(Constants.MORPH_DIALOG_ACTION_TYPE);
 
         switch (tag) {
             case POSITIVE:
@@ -82,8 +83,8 @@ public class MorphDialog {
     public MorphDialog show() {
         Intent intent = new Intent(builder.activity, builder.data.getDarkTheme() ?
                 MorphDialogActivityDark.class : MorphDialogActivity.class);
-        intent.putExtra("morph_data", builder.data);
-        intent.putExtra("morph_id", id);
+        intent.putExtra(Constants.MORPH_DIALOG_BUILDER_DATA, builder.data);
+        intent.putExtra(Constants.MORPH_DIALOG_ID, id);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(
                     builder.activity, builder.fab, "morph_transition");

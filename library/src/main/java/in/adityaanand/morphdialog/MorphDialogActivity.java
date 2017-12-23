@@ -34,7 +34,7 @@ public class MorphDialogActivity extends Activity {
         super.onCreate(savedInstanceState);
         ui = DataBindingUtil.setContentView(this, R.layout.activity_dialog);
         Bundle params = getIntent().getExtras();
-        DialogBuilderData data = params.getParcelable("data");
+        DialogBuilderData data = params.getParcelable(Constants.MORPH_DIALOG_BUILDER_DATA);
         MaterialDialog.Builder builder = new MaterialDialog.Builder(this)
                 .content(data.getContent())
                 .title(data.getTitle())
@@ -98,7 +98,7 @@ public class MorphDialogActivity extends Activity {
 
     void actionButtonClicked(Serializable actionType) {
         Intent returnData = new Intent();
-        returnData.putExtra("actionType", actionType);
+        returnData.putExtra(Constants.MORPH_DIALOG_ACTION_TYPE, actionType);
         setResult(Activity.RESULT_OK, returnData);
         closeDialog();
     }
@@ -134,7 +134,7 @@ public class MorphDialogActivity extends Activity {
     @Override
     public void onBackPressed() {
         Intent returnData = new Intent();
-        returnData.putExtra("wasDismissed", true);
+        returnData.putExtra("wasDismissed", true); // TODO: 23-Dec-17
         setResult(Activity.RESULT_OK, returnData);
         closeDialog();
     }
