@@ -23,3 +23,9 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-dontwarn java.lang.invoke**
+-dontwarn android.databinding.**
+-keep class in.adityaanand.morphdialog.databinding.** {
+    <fields>;
+    <methods>;
+}
