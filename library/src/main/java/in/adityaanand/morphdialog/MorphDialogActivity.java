@@ -7,58 +7,44 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.transition.ArcMotion;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
 
-import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.io.Serializable;
 
+import hugo.weaving.DebugLog;
 import in.adityaanand.morphdialog.databinding.ActivityDialogBinding;
 import in.adityaanand.morphdialog.morphutil.MorphDialogToFab;
 import in.adityaanand.morphdialog.morphutil.MorphFabToDialog;
 import in.adityaanand.morphdialog.utils.MorphDialogAction;
 
 // TODO: 22-Dec-17 I'm not sure if we need AppCompatActivity here...
+@DebugLog
 public class MorphDialogActivity extends Activity {
 
     ActivityDialogBinding ui;
+    long id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ui = DataBindingUtil.setContentView(this, R.layout.activity_dialog);
         Bundle params = getIntent().getExtras();
+        id = params.getLong(Constants.MORPH_DIALOG_ID);
         DialogBuilderData data = params.getParcelable(Constants.MORPH_DIALOG_BUILDER_DATA);
         MaterialDialog.Builder builder = new MaterialDialog.Builder(this)
                 .content(data.getContent())
                 .title(data.getTitle())
                 .positiveText(data.getPositiveText())
-                .onPositive(new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        MorphDialogActivity.this.actionButtonClicked(MorphDialogAction.POSITIVE);
-                    }
-                })
+                .onPositive((dialog, which) -> onActionButtonClicked(MorphDialogAction.POSITIVE))
                 .negativeText(data.getNegativeText())
-                .onNegative(new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        MorphDialogActivity.this.actionButtonClicked(MorphDialogAction.NEGATIVE);
-                    }
-                })
+                .onNegative((dialog, which) -> onActionButtonClicked(MorphDialogAction.NEGATIVE))
                 .neutralText(data.getNeutralText())
-                .onNeutral(new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        MorphDialogActivity.this.actionButtonClicked(MorphDialogAction.NEUTRAL);
-                    }
-                })
+                .onNeutral((dialog, which) -> onActionButtonClicked(MorphDialogAction.NEUTRAL))
                 .canceledOnTouchOutside(data.getCanceledOnTouchOutside())
                 .cancelable(data.getCancelable());
         if (data.getNeutralColor() != null)
@@ -81,26 +67,19 @@ public class MorphDialogActivity extends Activity {
         MaterialDialog dialog = builder.build();
         ((ViewGroup) dialog.getView().getParent()).removeView(dialog.getView()); //remove old parent
         ui.container.addView(dialog.getView()); //add new parent
-        ui.root.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (data.getCanceledOnTouchOutside()) MorphDialogActivity.this.closeDialog();
-            }
+        ui.root.setOnClickListener(v -> {
+            if (data.getCanceledOnTouchOutside()) closeDialog();
         }); //closes dialog if you click outside of it
-        ui.container.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
+        ui.container.setOnClickListener(v -> {
         });  //leaving empty so that nothing happens when you click on non-clickable bits of the dialog
 
         setupTransition();
     }
 
-    void actionButtonClicked(Serializable actionType) {
+    void onActionButtonClicked(Serializable actionType) {
         Intent returnData = new Intent();
         returnData.putExtra(Constants.MORPH_DIALOG_ACTION_TYPE, actionType);
-        setResult(Activity.RESULT_OK, returnData);
-        closeDialog();
+        closeDialog(returnData);
     }
 
     public void setupTransition() {
@@ -133,13 +112,19 @@ public class MorphDialogActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        Intent returnData = new Intent();
-        returnData.putExtra("wasDismissed", true); // TODO: 23-Dec-17
-        setResult(Activity.RESULT_OK, returnData);
+    //    Intent returnData = new Intent();
+     //   returnData.putExtra("wasDismissed", true); // TODO: 23-Dec-17
+    //    setResult(Activity.RESULT_OK, returnData);
         closeDialog();
     }
 
-    public void closeDialog() {
+    public void closeDialog(){
+        closeDialog(new Intent());
+    }
+
+    public void closeDialog(Intent returnData) {
+        returnData.putExtra(Constants.MORPH_DIALOG_ID, id);
+        setResult(Activity.RESULT_OK, returnData);
         int height = ui.container.getHeight();
         ui.container.setMinimumHeight(height); //need to remember the height for smooth animation
         ui.container.removeAllViews();

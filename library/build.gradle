@@ -1,4 +1,14 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.jakewharton.hugo:hugo-plugin:1.2.1'
+    }
+}
 apply plugin: 'com.android.library'
+apply plugin: 'com.jakewharton.hugo'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.github.dcendents.android-maven'

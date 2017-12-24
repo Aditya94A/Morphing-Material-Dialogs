@@ -16,12 +16,14 @@ import com.afollestad.materialdialogs.util.DialogUtils;
 
 import java.util.Random;
 
+import hugo.weaving.DebugLog;
 import in.adityaanand.morphdialog.interfaces.MorphSingleButtonCallback;
 import in.adityaanand.morphdialog.utils.MorphDialogAction;
 
 /**
  * @author Aditya Anand (AdityaAnand1)
  */
+@DebugLog
 public class MorphDialog {
 
     private static final int REQUEST_CODE = 7324;
@@ -51,8 +53,8 @@ public class MorphDialog {
     private void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (builder == null || requestCode != REQUEST_CODE || data == null || resultCode != Activity.RESULT_OK) //this is not ours
             return;
-        long id = data.getLongExtra(Constants.MORPH_DIALOG_ID, 0);
-        if (this.id != id)
+        long paramId = data.getLongExtra(Constants.MORPH_DIALOG_ID, 0);
+        if (this.id != paramId || paramId == 0)
             return; //this is some other dialogs call back
 
         MorphDialogAction tag = (MorphDialogAction) data.getSerializableExtra(Constants.MORPH_DIALOG_ACTION_TYPE);
