@@ -68,7 +68,7 @@ public class MorphDialogActivity extends Activity {
         ((ViewGroup) dialog.getView().getParent()).removeView(dialog.getView()); //remove old parent
         ui.container.addView(dialog.getView()); //add new parent
         ui.root.setOnClickListener(v -> {
-            if (data.getCanceledOnTouchOutside()) closeDialog();
+            if (data.getCanceledOnTouchOutside()) onBackPressed();
         }); //closes dialog if you click outside of it
         ui.container.setOnClickListener(v -> {
         });  //leaving empty so that nothing happens when you click on non-clickable bits of the dialog

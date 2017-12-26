@@ -59,6 +59,9 @@ public class MorphDialog {
 
         MorphDialogAction tag = (MorphDialogAction) data.getSerializableExtra(Constants.MORPH_DIALOG_ACTION_TYPE);
 
+        if (tag == null)
+            return;
+
         switch (tag) {
             case POSITIVE:
                 if (builder.onPositiveCallback != null) {
