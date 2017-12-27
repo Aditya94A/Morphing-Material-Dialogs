@@ -9,9 +9,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Random;
 
 import in.adityaanand.morphdialog.MorphDialog;
+import in.adityaanand.morphdialog.interfaces.MorphSingleButtonCallback;
 import in.adityaanand.morphdialog.utils.MorphDialogAction;
 import in.adityaanand.morphdialogsample.databinding.ActivityMainBinding;
 
@@ -33,14 +36,23 @@ public class MainActivity extends AppCompatActivity {
                 .positiveText("Ok")
                 .negativeText("Cancel")
                 .neutralText("More")
-                .onPositive((MorphDialog dialog1, MorphDialogAction which) -> {
-                    Toast.makeText(this, "onPositive", Toast.LENGTH_SHORT).show();
+                .onPositive(new MorphSingleButtonCallback() {
+                    @Override
+                    public void onClick(@NotNull MorphDialog dialog1, @NotNull MorphDialogAction which) {
+                        Toast.makeText(MainActivity.this, "onPositive", Toast.LENGTH_SHORT).show();
+                    }
                 })
-                .onNegative((MorphDialog dialog1, MorphDialogAction which) -> {
-                    Toast.makeText(this, "onNegative", Toast.LENGTH_SHORT).show();
+                .onNegative(new MorphSingleButtonCallback() {
+                    @Override
+                    public void onClick(@NotNull MorphDialog dialog1, @NotNull MorphDialogAction which) {
+                        Toast.makeText(MainActivity.this, "onNegative", Toast.LENGTH_SHORT).show();
+                    }
                 })
-                .onNeutral((MorphDialog dialog1, MorphDialogAction which) -> {
-                    Toast.makeText(this, "onNeutral", Toast.LENGTH_SHORT).show();
+                .onNeutral(new MorphSingleButtonCallback() {
+                    @Override
+                    public void onClick(@NotNull MorphDialog dialog1, @NotNull MorphDialogAction which) {
+                        Toast.makeText(MainActivity.this, "onNeutral", Toast.LENGTH_SHORT).show();
+                    }
                 })
                 .cancelable(false)
                 .contentColor(Color.BLUE)
@@ -56,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        MorphDialog.registerOnActivityResult(requestCode, resultCode, data)
+        MorphDialog.Companion.registerOnActivityResult(requestCode, resultCode, data)
                 .forDialogs(dialog);
     }
 }

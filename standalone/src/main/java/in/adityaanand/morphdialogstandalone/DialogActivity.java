@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.transition.ArcMotion;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import in.adityaanand.morphdialogstandalone.databinding.ActivityDialogBinding;
@@ -42,20 +44,36 @@ public class DialogActivity extends AppCompatActivity {
                 .content(content)
                 .title(title)
                 .positiveText(positive)
-                .onPositive((dialog, which) -> {
-                    setResult(Activity.RESULT_OK);//useful if you care about startActivityForResult()'s result
-                    closeDialog();
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        DialogActivity.this.setResult(Activity.RESULT_OK);//useful if you care about startActivityForResult()'s result
+                        DialogActivity.this.closeDialog();
+                    }
                 })
                 .negativeText(negative)
-                .onNegative((dialog, which) -> onBackPressed());
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        DialogActivity.this.onBackPressed();
+                    }
+                });
 
         MaterialDialog dialog = builder.build();
         ((ViewGroup) dialog.getView().getParent()).removeView(dialog.getView()); //remove old parent
         ui.container.addView(dialog.getView()); //add new parent
 
-        ui.root.setOnClickListener(v -> closeDialog()); //closes dialog if you click outside of it
+        ui.root.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogActivity.this.closeDialog();
+            }
+        }); //closes dialog if you click outside of it
 
-        ui.container.setOnClickListener(v -> { //leaving empty so that nothing happens when you click on non-clickable bits of the dialog
+        ui.container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { //leaving empty so that nothing happens when you click on non-clickable bits of the dialog
+            }
         });
 
         setupSharedEelementTransitions();
