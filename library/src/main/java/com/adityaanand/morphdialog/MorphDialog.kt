@@ -1,7 +1,7 @@
-package `in`.adityaanand.morphdialog
+package com.adityaanand.morphdialog
 
-import `in`.adityaanand.morphdialog.interfaces.MorphSingleButtonCallback
-import `in`.adityaanand.morphdialog.utils.MorphDialogAction
+import com.adityaanand.morphdialog.interfaces.MorphSingleButtonCallback
+import com.adityaanand.morphdialog.utils.MorphDialogAction
 import android.app.Activity
 import android.app.ActivityOptions
 import android.content.Intent
@@ -70,16 +70,16 @@ class MorphDialog private constructor(var builder: Builder?) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             val options = ActivityOptions.makeSceneTransitionAnimation(
                     builder!!.activity, builder!!.fab, "morph_transition")
-            builder!!.activity.startActivityForResult(intent, MorphDialog.REQUEST_CODE, options.toBundle())
+            builder!!.activity.startActivityForResult(intent, REQUEST_CODE, options.toBundle())
         } else
-            builder!!.activity.startActivityForResult(intent, MorphDialog.REQUEST_CODE)
+            builder!!.activity.startActivityForResult(intent, REQUEST_CODE)
         return this
     }
 
     class Registerer(internal var requestCode: Int, internal var resultCode: Int, internal var data: Intent) {
 
         fun forDialogs(vararg dialogs: MorphDialog) {
-            if (requestCode == MorphDialog.REQUEST_CODE)
+            if (requestCode == REQUEST_CODE)
                 for (dialog in dialogs)
                     dialog?.onActivityResult(requestCode, resultCode, data)
         }

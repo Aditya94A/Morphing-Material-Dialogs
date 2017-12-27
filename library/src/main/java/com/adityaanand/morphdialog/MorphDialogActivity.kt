@@ -1,9 +1,10 @@
-package `in`.adityaanand.morphdialog
+package com.adityaanand.morphdialog
 
-import `in`.adityaanand.morphdialog.databinding.ActivityDialogBinding
-import `in`.adityaanand.morphdialog.morphutil.MorphDialogToFab
-import `in`.adityaanand.morphdialog.morphutil.MorphFabToDialog
-import `in`.adityaanand.morphdialog.utils.MorphDialogAction
+import com.adityaanand.morphdialog.R
+import com.adityaanand.morphdialog.databinding.ActivityDialogBinding
+import com.adityaanand.morphdialog.morphutil.MorphDialogToFab
+import com.adityaanand.morphdialog.morphutil.MorphFabToDialog
+import com.adityaanand.morphdialog.utils.MorphDialogAction
 import android.app.Activity
 import android.content.Intent
 import android.databinding.DataBindingUtil

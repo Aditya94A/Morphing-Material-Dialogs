@@ -1,4 +1,4 @@
-package `in`.adityaanand.morphdialog
+package com.adityaanand.morphdialog
 
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList

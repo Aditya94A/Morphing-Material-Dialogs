@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="in.adityaanand.morphdialogsample"
+<manifest package="com.adityaanand.morphdialogsample"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppBaseTheme">
-        <activity android:name="in.adityaanand.morphdialogsample.MainActivity">
+        <activity android:name="com.adityaanand.morphdialogsample.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -17,11 +17,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="in.adityaanand.morphdialog.MorphDialogActivity"
+            android:name="com.adityaanand.morphdialog.MorphDialogActivity"
             android:theme="@style/MorphDialog.Custom.Light">
         </activity>
         <activity
-            android:name="in.adityaanand.morphdialog.MorphDialogActivityDark"
+            android:name="com.adityaanand.morphdialog.MorphDialogActivityDark"
             android:theme="@style/MorphDialog.Custom.Dark">
         </activity>
     </application>

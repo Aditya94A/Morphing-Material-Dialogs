@@ -8,7 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="in.adityaanand.morphdialogstandalone.in.aditya.morphdialogstandalone.MainActivity">
+        tools:context="com.adityaanand.morphdialogstandalone.in.aditya.morphdialogstandalone.MainActivity">
 
 
         <android.support.design.widget.FloatingActionButton

@@ -1,4 +1,4 @@
-package `in`.adityaanand.morphdialog
+package com.adityaanand.morphdialog
 
 object Constants {
     const val MORPH_DIALOG_ID = "MORPH_DIALOG_ID281194"

@@ -1,4 +1,4 @@
-package in.adityaanand.morphdialogsample;
+package com.adityaanand.morphdialogsample;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -13,10 +13,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-import in.adityaanand.morphdialog.MorphDialog;
-import in.adityaanand.morphdialog.interfaces.MorphSingleButtonCallback;
-import in.adityaanand.morphdialog.utils.MorphDialogAction;
-import in.adityaanand.morphdialogsample.databinding.ActivityMainBinding;
+import com.adityaanand.morphdialog.MorphDialog;
+import com.adityaanand.morphdialog.interfaces.MorphSingleButtonCallback;
+import com.adityaanand.morphdialog.utils.MorphDialogAction;
+import com.adityaanand.morphdialogsample.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 

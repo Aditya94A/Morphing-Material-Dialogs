@@ -1,4 +1,4 @@
-package in.adityaanand.morphdialogstandalone.util;
+package com.adityaanand.morphdialogstandalone.util;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;

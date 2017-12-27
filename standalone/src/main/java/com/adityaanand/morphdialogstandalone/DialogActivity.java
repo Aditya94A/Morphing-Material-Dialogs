@@ -1,4 +1,4 @@
-package in.adityaanand.morphdialogstandalone;
+package com.adityaanand.morphdialogstandalone;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
@@ -20,9 +20,9 @@ import android.view.animation.Interpolator;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 
-import in.adityaanand.morphdialogstandalone.databinding.ActivityDialogBinding;
-import in.adityaanand.morphdialogstandalone.util.MorphDialogToFab;
-import in.adityaanand.morphdialogstandalone.util.MorphFabToDialog;
+import com.adityaanand.morphdialogstandalone.databinding.ActivityDialogBinding;
+import com.adityaanand.morphdialogstandalone.util.MorphDialogToFab;
+import com.adityaanand.morphdialogstandalone.util.MorphFabToDialog;
 
 
 public class DialogActivity extends AppCompatActivity {

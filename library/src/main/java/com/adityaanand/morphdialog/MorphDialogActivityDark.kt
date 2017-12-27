@@ -1,4 +1,4 @@
-package `in`.adityaanand.morphdialog
+package com.adityaanand.morphdialog
 
 class MorphDialogActivityDark : MorphDialogActivity()
 /*Nothing to see here, just need this to support dark theme
