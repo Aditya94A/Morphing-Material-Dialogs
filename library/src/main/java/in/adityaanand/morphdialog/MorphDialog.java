@@ -57,7 +57,7 @@ public class MorphDialog {
         if (this.id != paramId || paramId == 0)
             return; //this is some other dialogs call back
 
-        MorphDialogAction tag = (MorphDialogAction) data.getSerializableExtra(Constants.MORPH_DIALOG_ACTION_TYPE);
+        MorphDialogAction tag = (MorphDialogAction) data.getSerializableExtra(Constants.MORPH_DIALOG_ID);
 
         if (tag == null)
             return;
