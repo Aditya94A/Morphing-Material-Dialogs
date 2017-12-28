@@ -1,7 +1,5 @@
 package com.adityaanand.morphdialog
 
-import com.adityaanand.morphdialog.interfaces.MorphSingleButtonCallback
-import com.adityaanand.morphdialog.utils.MorphDialogAction
 import android.app.Activity
 import android.app.ActivityOptions
 import android.content.Intent
@@ -12,6 +10,8 @@ import android.support.annotation.ColorInt
 import android.support.annotation.ColorRes
 import android.support.annotation.StringRes
 import android.support.design.widget.FloatingActionButton
+import com.adityaanand.morphdialog.interfaces.MorphSingleButtonCallback
+import com.adityaanand.morphdialog.utils.MorphDialogAction
 import com.afollestad.materialdialogs.util.DialogUtils
 import hugo.weaving.DebugLog
 import java.util.*
@@ -20,7 +20,7 @@ import java.util.*
  * @author Aditya Anand (AdityaAnand1)
  */
 @DebugLog
-class MorphDialog private constructor(var builder: Builder?) {
+class MorphDialog private constructor(var builder: Builder) {
 
     //todo How do we let other devs know that this ^ is mine to avoid conflict?
     private val id: Long
@@ -35,7 +35,7 @@ class MorphDialog private constructor(var builder: Builder?) {
     }
 
     private fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (builder == null || requestCode != REQUEST_CODE || data == null || resultCode != Activity.RESULT_OK)
+        if (requestCode != REQUEST_CODE || data == null || resultCode != Activity.RESULT_OK)
         //this is not ours
             return
         val paramId = data.getLongExtra(Constants.MORPH_DIALOG_ID, 0)
@@ -45,40 +45,42 @@ class MorphDialog private constructor(var builder: Builder?) {
         val actionType = data.getSerializableExtra(Constants.MORPH_DIALOG_ACTION_TYPE) as MorphDialogAction? ?: return
 
         when (actionType) {
-            MorphDialogAction.POSITIVE -> if (builder!!.onPositiveCallback != null)
-                builder!!.onPositiveCallback!!.onClick(this, actionType)
+            MorphDialogAction.POSITIVE -> if (builder.onPositiveCallback != null)
+                builder.onPositiveCallback!!.onClick(this, actionType)
 
-            MorphDialogAction.NEGATIVE -> if (builder!!.onNegativeCallback != null)
-                builder!!.onNegativeCallback!!.onClick(this, actionType)
+            MorphDialogAction.NEGATIVE -> if (builder.onNegativeCallback != null)
+                builder.onNegativeCallback!!.onClick(this, actionType)
 
-            MorphDialogAction.NEUTRAL -> if (builder!!.onNeutralCallback != null)
-                builder!!.onNeutralCallback!!.onClick(this, actionType)
+            MorphDialogAction.NEUTRAL -> if (builder.onNeutralCallback != null)
+                builder.onNeutralCallback!!.onClick(this, actionType)
 
         }
-        if (builder!!.onAnyCallback != null) {
-            builder!!.onAnyCallback!!.onClick(this, actionType)
+        if (builder.onAnyCallback != null) {
+            builder.onAnyCallback!!.onClick(this, actionType)
         }
     }
 
     fun show(): MorphDialog {
-        val intent = Intent(builder!!.activity, if (builder!!.data.darkTheme)
+        val intent = Intent(builder.activity, if (builder.data.darkTheme)
             MorphDialogActivityDark::class.java
         else
             MorphDialogActivity::class.java)
-        intent.putExtra(Constants.MORPH_DIALOG_BUILDER_DATA, builder!!.data)
+        intent.putExtra(Constants.MORPH_DIALOG_BUILDER_DATA, builder.data)
         intent.putExtra(Constants.MORPH_DIALOG_ID, id)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             val options = ActivityOptions.makeSceneTransitionAnimation(
-                    builder!!.activity, builder!!.fab, "morph_transition")
-            builder!!.activity.startActivityForResult(intent, REQUEST_CODE, options.toBundle())
+                    builder.activity, builder.fab, "morph_transition")
+            builder.activity.startActivityForResult(intent, REQUEST_CODE, options.toBundle())
         } else
-            builder!!.activity.startActivityForResult(intent, REQUEST_CODE)
+            builder.activity.startActivityForResult(intent, REQUEST_CODE)
         return this
     }
 
-    class Registerer(internal var requestCode: Int, internal var resultCode: Int, internal var data: Intent) {
+    class Registerer(val requestCode: Int,
+                     val resultCode: Int,
+                     val data: Intent?) {
 
-        fun forDialogs(vararg dialogs: MorphDialog) {
+        fun forDialogs(vararg dialogs: MorphDialog?) {
             if (requestCode == REQUEST_CODE)
                 for (dialog in dialogs)
                     dialog?.onActivityResult(requestCode, resultCode, data)

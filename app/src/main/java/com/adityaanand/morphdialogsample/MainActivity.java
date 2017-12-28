@@ -9,14 +9,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.util.Random;
-
 import com.adityaanand.morphdialog.MorphDialog;
 import com.adityaanand.morphdialog.interfaces.MorphSingleButtonCallback;
 import com.adityaanand.morphdialog.utils.MorphDialogAction;
 import com.adityaanand.morphdialogsample.databinding.ActivityMainBinding;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "onNeutral", Toast.LENGTH_SHORT).show();
                     }
                 })
-                .cancelable(false)
+//                .cancelable(false)
                 .contentColor(Color.BLUE)
                 .backgroundColor(Color.GREEN)
                 .neutralColorRes(R.color.primary)
