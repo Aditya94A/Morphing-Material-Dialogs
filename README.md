@@ -32,7 +32,7 @@ Add the library to your app's build.gradle
 
 ```gradle
 	dependencies {
-		implementation 'com.github.AdityaAnand1:Morphing-Material-Dialogs:0.0.1-alpha4'
+		implementation 'com.github.AdityaAnand1:Morphing-Material-Dialogs:0.0.1-alpha6'
 		//you should also have the design support library, since we're using the native floating action button
    		implementation "com.android.support:design:27.0.2"
 	}
@@ -58,11 +58,11 @@ In your styles.xml, override the MorphDialog.Base themes (at least one, both if 
  
  ```xml
     <activity
-        android:name="in.adityaanand.morphdialog.MorphDialogActivity"
+        android:name="com.adityaanand.morphdialog.MorphDialogActivity"
         android:theme="@style/MorphDialog.Custom.Light">
     </activity>
     <activity
-        android:name="in.adityaanand.morphdialog.MorphDialogActivityDark"
+        android:name="com.adityaanand.morphdialog.MorphDialogActivityDark"
         android:theme="@style/MorphDialog.Custom.Dark">
     </activity>
  ```
