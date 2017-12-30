@@ -291,7 +291,7 @@ class MorphDialog private constructor(var builder: Builder) {
 
         private val REQUEST_CODE = 7324
 
-        fun registerOnActivityResult(requestCode: Int, resultCode: Int, data: Intent): Registerer {
+        fun registerOnActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Registerer {
             return Registerer(requestCode, resultCode, data)
         }
     }
