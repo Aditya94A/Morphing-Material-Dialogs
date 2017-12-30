@@ -1,10 +1,5 @@
 package com.adityaanand.morphdialog
 
-import com.adityaanand.morphdialog.R
-import com.adityaanand.morphdialog.databinding.ActivityDialogBinding
-import com.adityaanand.morphdialog.morphutil.MorphDialogToFab
-import com.adityaanand.morphdialog.morphutil.MorphFabToDialog
-import com.adityaanand.morphdialog.utils.MorphDialogAction
 import android.app.Activity
 import android.content.Intent
 import android.databinding.DataBindingUtil
@@ -14,6 +9,10 @@ import android.os.Bundle
 import android.transition.ArcMotion
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import com.adityaanand.morphdialog.databinding.ActivityDialogBinding
+import com.adityaanand.morphdialog.morphutil.MorphDialogToFab
+import com.adityaanand.morphdialog.morphutil.MorphFabToDialog
+import com.adityaanand.morphdialog.utils.MorphDialogAction
 import com.afollestad.materialdialogs.MaterialDialog
 import hugo.weaving.DebugLog
 import java.io.Serializable
@@ -25,29 +24,30 @@ open class MorphDialogActivity : Activity() {
     lateinit var ui: ActivityDialogBinding
     internal var id: Long = 0
 
-    internal val backgroundColor: Int
-        get() {
-            val background = ui.container.background
-            return (background as ColorDrawable).color
-        }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ui = DataBindingUtil.setContentView(this, R.layout.activity_dialog)
-        val params = intent.extras
-        id = params!!.getLong(Constants.MORPH_DIALOG_ID)
-        val data = params.getParcelable<DialogBuilderData>(Constants.MORPH_DIALOG_BUILDER_DATA)
+        val params = intent.extras!!
+        id = params.getLong(Constants.MORPH_DIALOG_ID)
+        val data = params.getParcelable<DialogBuilderData>(Constants.MORPH_DIALOG_BUILDER_DATA)!!
+
         val builder = MaterialDialog.Builder(this)
-                .content(data!!.content!!)
-                .title(data.title!!)
-                .positiveText(data.positiveText!!)
-                .onPositive { dialog, which -> onActionButtonClicked(MorphDialogAction.POSITIVE) }
-                .negativeText(data.negativeText!!)
-                .onNegative { dialog, which -> onActionButtonClicked(MorphDialogAction.NEGATIVE) }
-                .neutralText(data.neutralText!!)
-                .onNeutral { dialog, which -> onActionButtonClicked(MorphDialogAction.NEUTRAL) }
+                .onPositive { _, _ -> onActionButtonClicked(MorphDialogAction.POSITIVE) }
+                .onNegative { _, _ -> onActionButtonClicked(MorphDialogAction.NEGATIVE) }
+                .onNeutral { _, _ -> onActionButtonClicked(MorphDialogAction.NEUTRAL) }
                 .canceledOnTouchOutside(data.canceledOnTouchOutside)
                 .cancelable(data.cancelable)
+
+        if(data.content!=null)
+            builder.content(data.content!!)
+        if(data.title!=null)
+            builder.title(data.title!!)
+        if(data.positiveText!=null)
+            builder.positiveText(data.positiveText!!)
+        if(data.negativeText!=null)
+            builder.negativeText(data.negativeText!!)
+        if(data.neutralText!=null)
+            builder.neutralText(data.neutralText!!)
         if (data.neutralColor != null)
             builder.neutralColor(data.neutralColor!!)
         if (data.negativeColor != null)
@@ -61,9 +61,9 @@ open class MorphDialogActivity : Activity() {
         }
         if (data.titleColor != -1)
             builder.titleColor(data.titleColor)
-        if (data.contentColor != -1) {
+        if (data.contentColor != -1)
             builder.backgroundColor(data.contentColor)
-        }
+
 
         val dialog = builder.build()
         (dialog.view.parent as ViewGroup).removeView(dialog.view) //remove old parent
@@ -89,11 +89,12 @@ open class MorphDialogActivity : Activity() {
 
         val easeInOut = AnimationUtils.loadInterpolator(this, android.R.interpolator.fast_out_slow_in)
 
-        val sharedEnter = MorphFabToDialog(backgroundColor)
+        val background: Int = getBackgroundColor()
+        val sharedEnter = MorphFabToDialog(background)
         sharedEnter.pathMotion = arcMotion
         sharedEnter.interpolator = easeInOut
 
-        val sharedReturn = MorphDialogToFab(backgroundColor)
+        val sharedReturn = MorphDialogToFab(background)
         sharedReturn.pathMotion = arcMotion
         sharedReturn.interpolator = easeInOut
 
@@ -102,6 +103,8 @@ open class MorphDialogActivity : Activity() {
         window.sharedElementEnterTransition = sharedEnter
         window.sharedElementReturnTransition = sharedReturn
     }
+
+    fun getBackgroundColor(): Int = (ui.container.background as ColorDrawable).color
 
     override fun onBackPressed() {
         //    Intent returnData = new Intent();
