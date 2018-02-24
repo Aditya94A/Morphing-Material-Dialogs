@@ -195,4 +195,8 @@ The problem is passing the instructions to build a MaterialDialog (i.e,a  Materi
 
 #### I want to morph **from something other than a fab**/ I want to morph **to something other than MorphDialog**
 
-Currently, this library does not support something-other-than-a-fab-to-something-other-than-a-material-dialog transition. If you'd like for it to work in another setting, say a custom view, head over to the [standalone](https://github.com/AdityaAnand1/Morphing-Material-Dialogs/tree/master/standalone) module and check out the minimal implementation that will point you in the direction of a custom solution.
+Currently, this library does not support morphing something-other-than-a-fab to something-other-than-a-material-dialog transition. If you'd like for it to work in another setting, say a custom view, head over to the [standalone](https://github.com/AdityaAnand1/Morphing-Material-Dialogs/tree/master/standalone) module and check out the minimal implementation (without all the library plumbing) that should point you in the direction of a custom solution.
+
+## Are you using this library in a live app? 
+
+Let me know and I'll feature your app over here!
