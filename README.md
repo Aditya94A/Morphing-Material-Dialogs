@@ -32,7 +32,7 @@ Add the library to your app's build.gradle
 
 ```gradle
 	dependencies {
-		implementation 'com.github.AdityaAnand1:Morphing-Material-Dialogs:0.0.1-alpha8'
+		implementation 'com.github.AdityaAnand1:Morphing-Material-Dialogs:0.0.3'
 		//you should also have the design support library, since we're using the native floating action button
    		implementation "com.android.support:design:27.0.2"
 	}
