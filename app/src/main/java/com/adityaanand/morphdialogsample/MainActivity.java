@@ -18,7 +18,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-`in`.adityaanand.morphdialog.MorphDialog;
 
 public class MainActivity extends AppCompatActivity {
 
