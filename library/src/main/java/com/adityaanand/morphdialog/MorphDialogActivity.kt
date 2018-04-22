@@ -9,24 +9,22 @@ import android.os.Bundle
 import android.transition.ArcMotion
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import com.adityaanand.morphdialog.databinding.ActivityDialogBinding
+import com.adityaanand.morphdialog.databinding.ActivityDialog2Binding
 import com.adityaanand.morphdialog.morphutil.MorphDialogToFab
 import com.adityaanand.morphdialog.morphutil.MorphFabToDialog
 import com.adityaanand.morphdialog.utils.MorphDialogAction
 import com.afollestad.materialdialogs.MaterialDialog
-import hugo.weaving.DebugLog
 import java.io.Serializable
 
 // TODO: 22-Dec-17 I'm not sure if we need AppCompatActivity here...
-@DebugLog
 open class MorphDialogActivity : Activity() {
 
-    lateinit var ui: ActivityDialogBinding
+    lateinit var ui: ActivityDialog2Binding
     internal var id: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ui = DataBindingUtil.setContentView(this, R.layout.activity_dialog)
+        ui = DataBindingUtil.setContentView(this, R.layout.activity_dialog2)
         val params = intent.extras!!
         id = params.getLong(Constants.MORPH_DIALOG_ID)
         val data = params.getParcelable<DialogBuilderData>(Constants.MORPH_DIALOG_BUILDER_DATA)!!

@@ -13,13 +13,11 @@ import android.support.design.widget.FloatingActionButton
 import com.adityaanand.morphdialog.interfaces.MorphSingleButtonCallback
 import com.adityaanand.morphdialog.utils.MorphDialogAction
 import com.afollestad.materialdialogs.util.DialogUtils
-import hugo.weaving.DebugLog
 import java.util.*
 
 /**
  * @author Aditya Anand (AdityaAnand1)
  */
-@DebugLog
 class MorphDialog private constructor(var builder: Builder) {
 
     //todo How do we let other devs know that this ^ is mine to avoid conflict?
