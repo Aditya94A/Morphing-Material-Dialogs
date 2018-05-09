@@ -36,15 +36,15 @@ open class MorphDialogActivity : Activity() {
                 .canceledOnTouchOutside(data.canceledOnTouchOutside)
                 .cancelable(data.cancelable)
 
-        if(data.content!=null)
+        if (data.content != null)
             builder.content(data.content!!)
-        if(data.title!=null)
+        if (data.title != null)
             builder.title(data.title!!)
-        if(data.positiveText!=null)
+        if (data.positiveText != null)
             builder.positiveText(data.positiveText!!)
-        if(data.negativeText!=null)
+        if (data.negativeText != null)
             builder.negativeText(data.negativeText!!)
-        if(data.neutralText!=null)
+        if (data.neutralText != null)
             builder.neutralText(data.neutralText!!)
         if (data.neutralColor != null)
             builder.neutralColor(data.neutralColor!!)
@@ -52,6 +52,20 @@ open class MorphDialogActivity : Activity() {
             builder.negativeColor(data.negativeColor!!)
         if (data.positiveColor != null)
             builder.positiveColor(data.positiveColor!!)
+
+        /**items**/
+        if (data.items != null)
+            builder.items(*data.items!!)
+        if (data.alwaysCallSingleChoiceCallback)
+            builder.alwaysCallSingleChoiceCallback()
+        if (data.alwaysCallMultiChoiceCallback)
+            builder.alwaysCallMultiChoiceCallback()
+
+        if (data.hasSingleChoiceCallback)
+            builder.itemsCallbackSingleChoice(data.selectedIndex) { dialog, itemView, which, text ->
+                onSingleItemPicked(which, text.toString())
+                true
+            }
 
         if (data.backgroundColor != 0) {
             //   builder.backgroundColor(data.getBackgroundColor()); //doesn't work for some reason
@@ -62,7 +76,6 @@ open class MorphDialogActivity : Activity() {
         if (data.contentColor != -1)
             builder.backgroundColor(data.contentColor)
 
-
         val dialog = builder.build()
         (dialog.view.parent as ViewGroup).removeView(dialog.view) //remove old parent
         ui.container.addView(dialog.view) //add new parent
@@ -72,9 +85,15 @@ open class MorphDialogActivity : Activity() {
         setupTransition()
     }
 
-    fun onActionButtonClicked(actionType: Serializable) {
+    fun onSingleItemPicked(which: Int, text: String) {
         val returnData = Intent()
-        returnData.putExtra(Constants.MORPH_DIALOG_ACTION_TYPE, actionType)
+                .putExtra(Constants.INTENT_KEY_SINGLE_CHOICE_LIST_ITEM_POSITION, which)
+                .putExtra(Constants.INTENT_KEY_SINGLE_CHOICE_LIST_ITEM_TEXT, text)
+        closeDialog(returnData)
+    }
+
+    fun onActionButtonClicked(actionType: Serializable) {
+        val returnData = Intent().putExtra(Constants.MORPH_DIALOG_ACTION_TYPE, actionType)
         closeDialog(returnData)
     }
 
@@ -121,6 +140,6 @@ open class MorphDialogActivity : Activity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             finishAfterTransition()
         else
-            finish()
+            finish() //boo
     }
 }

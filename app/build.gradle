@@ -8,6 +8,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply from: '../dependencies.gradle'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion versions.compileSdk
@@ -41,4 +42,9 @@ dependencies {
     implementation "com.android.support:gridlayout-v7:${versions.supportLib}"
     implementation project(':library')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    kapt 'com.android.databinding:compiler:3.1.1'
+}
+
+kapt {
+    generateStubs = true
 }

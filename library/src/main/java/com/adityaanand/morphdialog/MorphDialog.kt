@@ -10,6 +10,7 @@ import android.support.annotation.ColorInt
 import android.support.annotation.ColorRes
 import android.support.annotation.StringRes
 import android.support.design.widget.FloatingActionButton
+import com.adityaanand.morphdialog.interfaces.MorphListCallbackSingleChoice
 import com.adityaanand.morphdialog.interfaces.MorphSingleButtonCallback
 import com.adityaanand.morphdialog.utils.MorphDialogAction
 import com.afollestad.materialdialogs.util.DialogUtils
@@ -18,6 +19,7 @@ import java.util.*
 /**
  * @author Aditya Anand (AdityaAnand1)
  */
+@Suppress("unused")
 class MorphDialog private constructor(var builder: Builder) {
 
     //todo How do we let other devs know that this ^ is mine to avoid conflict?
@@ -40,8 +42,14 @@ class MorphDialog private constructor(var builder: Builder) {
         if (this.id != paramId || paramId == 0L)
             return  //this is some other dialogs call back
 
-        val actionType = data.getSerializableExtra(Constants.MORPH_DIALOG_ACTION_TYPE) as MorphDialogAction? ?: return
+        if (data.hasExtra(Constants.MORPH_DIALOG_ACTION_TYPE)) //is a button click
+            handleButtonClick(data.getSerializableExtra(Constants.MORPH_DIALOG_ACTION_TYPE) as MorphDialogAction)
+        else if (data.hasExtra(Constants.INTENT_KEY_SINGLE_CHOICE_LIST_ITEM_POSITION))
+            handleSingleChoiceItemSelected(data.getIntExtra(Constants.INTENT_KEY_SINGLE_CHOICE_LIST_ITEM_POSITION, -1),
+                    data.getCharSequenceExtra(Constants.INTENT_KEY_SINGLE_CHOICE_LIST_ITEM_TEXT))
+    }
 
+    fun handleButtonClick(actionType: MorphDialogAction) {
         when (actionType) {
             MorphDialogAction.POSITIVE -> if (builder.onPositiveCallback != null)
                 builder.onPositiveCallback!!.onClick(this, actionType)
@@ -56,6 +64,10 @@ class MorphDialog private constructor(var builder: Builder) {
         if (builder.onAnyCallback != null) {
             builder.onAnyCallback!!.onClick(this, actionType)
         }
+    }
+
+    fun handleSingleChoiceItemSelected(which: Int, text: CharSequence) {
+        builder.singleChoiceCallback?.onSelection(this, which, text)
     }
 
     fun show(): MorphDialog {
@@ -88,10 +100,11 @@ class MorphDialog private constructor(var builder: Builder) {
     class Builder(val activity: Activity, val fab: FloatingActionButton) {
         val data: DialogBuilderData = DialogBuilderData()
 
-        var onPositiveCallback: MorphSingleButtonCallback? = null
-        var onNegativeCallback: MorphSingleButtonCallback? = null
-        var onNeutralCallback: MorphSingleButtonCallback? = null
-        var onAnyCallback: MorphSingleButtonCallback? = null
+        internal var onPositiveCallback: MorphSingleButtonCallback? = null
+        internal var onNegativeCallback: MorphSingleButtonCallback? = null
+        internal var onNeutralCallback: MorphSingleButtonCallback? = null
+        internal var onAnyCallback: MorphSingleButtonCallback? = null
+        internal var singleChoiceCallback: MorphListCallbackSingleChoice? = null
 
         fun title(@StringRes titleRes: Int): Builder {
             title(activity.getText(titleRes))
@@ -110,6 +123,27 @@ class MorphDialog private constructor(var builder: Builder) {
 
         fun content(content: CharSequence): Builder {
             data.content = content
+            return this
+        }
+
+        fun items(vararg items: CharSequence): Builder {
+            data.items = arrayOf(*items)
+            return this
+        }
+
+        fun itemsCallbackSingleChoice(callback: MorphListCallbackSingleChoice): Builder {
+            this.singleChoiceCallback = callback
+            data.hasSingleChoiceCallback = true
+            return this
+        }
+
+        fun alwaysCallSingleChoiceCallback(alwaysCallSingleChoiceCallback: Boolean = true): Builder {
+            data.alwaysCallSingleChoiceCallback = alwaysCallSingleChoiceCallback
+            return this
+        }
+
+        fun alwaysCallMultiChoiceCallback(alwaysCallMultiChoiceCallback: Boolean = true): Builder {
+            data.alwaysCallMultiChoiceCallback = alwaysCallMultiChoiceCallback
             return this
         }
 
