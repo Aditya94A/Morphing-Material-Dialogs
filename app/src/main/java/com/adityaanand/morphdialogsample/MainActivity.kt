@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     fun morph(view: View) {
         dialog = MorphDialog.Builder(this, view as FloatingActionButton)
                 .title("Title")
+                .iconRes(R.drawable.ic_launcher_background)
                 .items("Item 1", "Item 2")
                 // .content("This is a sentence. Here is another one.")
                 .positiveText("Ok")
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this@MainActivity, "onPositive", Toast.LENGTH_SHORT).show()
                 })
                 .onNegative(object : MorphSingleButtonCallback {
-                    override fun onClick(dialog1: MorphDialog, which: MorphDialogAction) {
+                    override fun onClick(a: MorphDialog, which: MorphDialogAction) {
                         Toast.makeText(this@MainActivity, "onNegative", Toast.LENGTH_SHORT).show()
                     }
                 })

@@ -5,10 +5,7 @@ import android.app.ActivityOptions
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Build
-import android.support.annotation.AttrRes
-import android.support.annotation.ColorInt
-import android.support.annotation.ColorRes
-import android.support.annotation.StringRes
+import android.support.annotation.*
 import android.support.design.widget.FloatingActionButton
 import com.adityaanand.morphdialog.interfaces.MorphListCallbackMultiChoice
 import com.adityaanand.morphdialog.interfaces.MorphListCallbackSingleChoice
@@ -114,6 +111,11 @@ class MorphDialog private constructor(var builder: Builder) {
         internal var onAnyCallback: MorphSingleButtonCallback? = null
         internal var singleChoiceCallback: MorphListCallbackSingleChoice? = null
         internal var multiChoiceCallback: MorphListCallbackMultiChoice? = null
+
+        fun iconRes(@DrawableRes iconRes: Int): Builder {
+            data.iconRes = iconRes
+            return this
+        }
 
         fun title(@StringRes titleRes: Int): Builder {
             title(activity.getText(titleRes))

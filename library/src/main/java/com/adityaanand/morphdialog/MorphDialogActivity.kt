@@ -52,6 +52,8 @@ open class MorphDialogActivity : Activity() {
             builder.negativeColor(data.negativeColor!!)
         if (data.positiveColor != null)
             builder.positiveColor(data.positiveColor!!)
+        if (data.iconRes != null)
+            builder.iconRes(data.iconRes!!)
 
         /**items**/
         if (data.items != null)
@@ -60,7 +62,7 @@ open class MorphDialogActivity : Activity() {
         if (data.alwaysCallSingleChoiceCallback)
             builder.alwaysCallSingleChoiceCallback()
         if (data.hasSingleChoiceCallback)
-            builder.itemsCallbackSingleChoice(data.selectedIndex) { dialog, itemView, which, text ->
+            builder.itemsCallbackSingleChoice(data.selectedIndex) { _, _, which, text ->
                 onSingleItemPicked(which, text.toString())
                 true
             }

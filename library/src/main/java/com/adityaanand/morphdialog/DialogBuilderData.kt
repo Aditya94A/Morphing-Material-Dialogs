@@ -3,6 +3,7 @@ package com.adityaanand.morphdialog
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.os.Parcelable
+import android.support.annotation.DrawableRes
 import kotlinx.android.parcel.Parcelize
 import java.util.*
 
@@ -16,6 +17,7 @@ data class DialogBuilderData(var positiveText: CharSequence? = null,
                              var neutralText: CharSequence? = null,
                              var darkTheme: Boolean = false,
                              var title: CharSequence? = null,
+                             @DrawableRes var iconRes: Int? = null,
                              var content: CharSequence? = null,
                              var cancelable: Boolean = true,
                              var canceledOnTouchOutside: Boolean = true,
@@ -28,15 +30,15 @@ data class DialogBuilderData(var positiveText: CharSequence? = null,
                              var neutralColor: ColorStateList? = null,
         /*items*/
                              var items: Array<CharSequence>? = null,
-                             //single choice
+        //single choice
                              var alwaysCallSingleChoiceCallback: Boolean = false,
                              var hasSingleChoiceCallback: Boolean = false,
                              var selectedIndex: Int = -1,
-                             //multi choice
+        //multi choice
                              var alwaysCallMultiChoiceCallback: Boolean = false,
                              var hasMultiChoiceCallback: Boolean = false,
                              var selectedIndices: ArrayList<Int> = arrayListOf()
-                             ) : Parcelable {
+) : Parcelable {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
