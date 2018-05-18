@@ -28,10 +28,15 @@ data class DialogBuilderData(var positiveText: CharSequence? = null,
                              var neutralColor: ColorStateList? = null,
         /*items*/
                              var items: Array<CharSequence>? = null,
+                             //single choice
                              var alwaysCallSingleChoiceCallback: Boolean = false,
-                             var alwaysCallMultiChoiceCallback: Boolean = false,
                              var hasSingleChoiceCallback: Boolean = false,
-                             var selectedIndex: Int = -1) : Parcelable {
+                             var selectedIndex: Int = -1,
+                             //multi choice
+                             var alwaysCallMultiChoiceCallback: Boolean = false,
+                             var hasMultiChoiceCallback: Boolean = false,
+                             var selectedIndices: ArrayList<Int> = arrayListOf()
+                             ) : Parcelable {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

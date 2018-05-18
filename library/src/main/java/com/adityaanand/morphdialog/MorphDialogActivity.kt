@@ -56,16 +56,23 @@ open class MorphDialogActivity : Activity() {
         /**items**/
         if (data.items != null)
             builder.items(*data.items!!)
+        //single choice
         if (data.alwaysCallSingleChoiceCallback)
             builder.alwaysCallSingleChoiceCallback()
-        if (data.alwaysCallMultiChoiceCallback)
-            builder.alwaysCallMultiChoiceCallback()
-
         if (data.hasSingleChoiceCallback)
             builder.itemsCallbackSingleChoice(data.selectedIndex) { dialog, itemView, which, text ->
                 onSingleItemPicked(which, text.toString())
                 true
             }
+
+        //multi choice
+        if (data.alwaysCallMultiChoiceCallback)
+            builder.alwaysCallMultiChoiceCallback()
+        if (data.hasMultiChoiceCallback)
+            builder.itemsCallbackMultiChoice(data.selectedIndices.toTypedArray(), { dialog, which, text ->
+                onMultiItemsPicked(which, text)
+                true
+            })
 
         if (data.backgroundColor != 0) {
             //   builder.backgroundColor(data.getBackgroundColor()); //doesn't work for some reason
@@ -89,6 +96,13 @@ open class MorphDialogActivity : Activity() {
         val returnData = Intent()
                 .putExtra(Constants.INTENT_KEY_SINGLE_CHOICE_LIST_ITEM_POSITION, which)
                 .putExtra(Constants.INTENT_KEY_SINGLE_CHOICE_LIST_ITEM_TEXT, text)
+        closeDialog(returnData)
+    }
+
+    fun onMultiItemsPicked(which: Array<Int>, texts: Array<CharSequence>) {
+        val returnData = Intent()
+                .putIntegerArrayListExtra(Constants.INTENT_KEY_MULTI_CHOICE_LIST_ITEM_POSITIONS, which.toCollection(ArrayList()))
+                .putCharSequenceArrayListExtra(Constants.INTENT_KEY_MULTI_CHOICE_LIST_ITEM_TEXTS, texts.toCollection(ArrayList()))
         closeDialog(returnData)
     }
 

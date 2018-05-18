@@ -10,6 +10,7 @@ import android.support.annotation.ColorInt
 import android.support.annotation.ColorRes
 import android.support.annotation.StringRes
 import android.support.design.widget.FloatingActionButton
+import com.adityaanand.morphdialog.interfaces.MorphListCallbackMultiChoice
 import com.adityaanand.morphdialog.interfaces.MorphListCallbackSingleChoice
 import com.adityaanand.morphdialog.interfaces.MorphSingleButtonCallback
 import com.adityaanand.morphdialog.utils.MorphDialogAction
@@ -47,6 +48,9 @@ class MorphDialog private constructor(var builder: Builder) {
         else if (data.hasExtra(Constants.INTENT_KEY_SINGLE_CHOICE_LIST_ITEM_POSITION))
             handleSingleChoiceItemSelected(data.getIntExtra(Constants.INTENT_KEY_SINGLE_CHOICE_LIST_ITEM_POSITION, -1),
                     data.getCharSequenceExtra(Constants.INTENT_KEY_SINGLE_CHOICE_LIST_ITEM_TEXT))
+        else if (data.hasExtra(Constants.INTENT_KEY_MULTI_CHOICE_LIST_ITEM_TEXTS))
+            handleMultiChoiceItemSelected(data.getIntegerArrayListExtra(Constants.INTENT_KEY_MULTI_CHOICE_LIST_ITEM_POSITIONS).toTypedArray(),
+                    data.getCharSequenceArrayListExtra(Constants.INTENT_KEY_MULTI_CHOICE_LIST_ITEM_TEXTS).toTypedArray())
     }
 
     fun handleButtonClick(actionType: MorphDialogAction) {
@@ -68,6 +72,10 @@ class MorphDialog private constructor(var builder: Builder) {
 
     fun handleSingleChoiceItemSelected(which: Int, text: CharSequence) {
         builder.singleChoiceCallback?.onSelection(this, which, text)
+    }
+
+    fun handleMultiChoiceItemSelected(which: Array<Int>, texts: Array<CharSequence>) {
+        builder.multiChoiceCallback?.onSelection(this, which, texts)
     }
 
     fun show(): MorphDialog {
@@ -105,6 +113,7 @@ class MorphDialog private constructor(var builder: Builder) {
         internal var onNeutralCallback: MorphSingleButtonCallback? = null
         internal var onAnyCallback: MorphSingleButtonCallback? = null
         internal var singleChoiceCallback: MorphListCallbackSingleChoice? = null
+        internal var multiChoiceCallback: MorphListCallbackMultiChoice? = null
 
         fun title(@StringRes titleRes: Int): Builder {
             title(activity.getText(titleRes))
@@ -137,8 +146,36 @@ class MorphDialog private constructor(var builder: Builder) {
             return this
         }
 
+        fun itemsCallbackSingleChoice(callback: (MorphDialog, Int, CharSequence?) -> Unit): Builder {
+            this.singleChoiceCallback = object : MorphListCallbackSingleChoice {
+                override fun onSelection(dialog: MorphDialog, which: Int, text: CharSequence?) {
+                    callback(dialog, which, text)
+                }
+
+            }
+            data.hasSingleChoiceCallback = true
+            return this
+        }
+
         fun alwaysCallSingleChoiceCallback(alwaysCallSingleChoiceCallback: Boolean = true): Builder {
             data.alwaysCallSingleChoiceCallback = alwaysCallSingleChoiceCallback
+            return this
+        }
+
+        fun itemsCallbackMultiChoice(callback: MorphListCallbackMultiChoice): Builder {
+            this.multiChoiceCallback = callback
+            data.hasMultiChoiceCallback = true
+            return this
+        }
+
+        fun itemsCallbackMultiChoice(callback: (MorphDialog, Array<Int>, Array<CharSequence>) -> Unit): Builder {
+            this.multiChoiceCallback = object : MorphListCallbackMultiChoice {
+                override fun onSelection(dialog: MorphDialog, which: Array<Int>, texts: Array<CharSequence>) {
+                    callback(dialog, which, texts)
+                }
+
+            }
+            data.hasMultiChoiceCallback = true
             return this
         }
 
@@ -243,8 +280,28 @@ class MorphDialog private constructor(var builder: Builder) {
             return this
         }
 
+        fun onPositive(callback: (MorphDialog, MorphDialogAction) -> Unit): Builder {
+            this.onPositiveCallback = object : MorphSingleButtonCallback {
+                override fun onClick(dialog: MorphDialog, which: MorphDialogAction) {
+                    callback(dialog, which)
+                }
+
+            }
+            return this
+        }
+
         fun onNegative(callback: MorphSingleButtonCallback): Builder {
             this.onNegativeCallback = callback
+            return this
+        }
+
+        fun onNegative(callback: (MorphDialog, MorphDialogAction) -> Unit): Builder {
+            this.onNegativeCallback = object : MorphSingleButtonCallback {
+                override fun onClick(dialog: MorphDialog, which: MorphDialogAction) {
+                    callback(dialog, which)
+                }
+
+            }
             return this
         }
 
@@ -253,8 +310,26 @@ class MorphDialog private constructor(var builder: Builder) {
             return this
         }
 
+        fun onNeutral(callback: (MorphDialog, MorphDialogAction) -> Unit): Builder {
+            this.onNeutralCallback = object : MorphSingleButtonCallback {
+                override fun onClick(dialog: MorphDialog, which: MorphDialogAction) {
+                    callback(dialog, which)
+                }
+            }
+            return this
+        }
+
         fun onAny(callback: MorphSingleButtonCallback): Builder {
             this.onAnyCallback = callback
+            return this
+        }
+
+        fun onAny(callback: (MorphDialog, MorphDialogAction) -> Unit): Builder {
+            this.onAnyCallback = object : MorphSingleButtonCallback {
+                override fun onClick(dialog: MorphDialog, which: MorphDialogAction) {
+                    callback(dialog, which)
+                }
+            }
             return this
         }
 
