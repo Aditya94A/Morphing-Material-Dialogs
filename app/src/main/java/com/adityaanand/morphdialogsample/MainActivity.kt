@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         MorphDialog.registerOnActivityResult(requestCode, resultCode, data)
                 .forDialogs(dialog)

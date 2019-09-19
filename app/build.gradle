@@ -42,7 +42,6 @@ dependencies {
     implementation "com.android.support:gridlayout-v7:${versions.supportLib}"
     implementation project(':library')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    kapt 'com.android.databinding:compiler:3.1.1'
 }
 
 kapt {

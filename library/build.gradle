@@ -39,5 +39,4 @@ dependencies {
     implementation "com.android.support:design:${versions.supportLib}"
     implementation "com.afollestad.material-dialogs:core:${versions.materialDialogs}"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    kapt 'com.android.databinding:compiler:3.1.1'
 }
