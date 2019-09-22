@@ -2,13 +2,13 @@ package com.adityaanand.morphdialog
 
 import android.app.Activity
 import android.content.Intent
-import android.databinding.DataBindingUtil
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.transition.ArcMotion
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import androidx.databinding.DataBindingUtil
 import com.adityaanand.morphdialog.databinding.ActivityDialog2Binding
 import com.adityaanand.morphdialog.morphutil.MorphDialogToFab
 import com.adityaanand.morphdialog.morphutil.MorphFabToDialog

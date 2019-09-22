@@ -4,8 +4,8 @@ jdk: oraclejdk8
 sudo: required
 
 before_install:
- - chmod +x gradlew
- - yes | sdkmanager "platforms;android-27"
+  - chmod +x gradlew
+  - yes | sdkmanager "platforms;android-27"
 
 android:
   components:
@@ -29,6 +29,6 @@ android:
     - '.+'
 
 script:
-- ./gradlew
+  - ./gradlew
 
 install: true

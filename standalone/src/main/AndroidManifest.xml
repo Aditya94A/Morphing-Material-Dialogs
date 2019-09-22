@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest package="com.adityaanand.morphdialogstandalone"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:allowBackup="true"
@@ -11,15 +11,14 @@
         android:theme="@style/AppBaseTheme">
         <activity android:name="com.adityaanand.morphdialogstandalone.MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name="com.adityaanand.morphdialogstandalone.DialogActivity"
-            android:theme="@style/MorphDialog.Light">
-        </activity>
+            android:theme="@style/MorphDialog.Light"></activity>
     </application>
 
 </manifest>

@@ -36,13 +36,11 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "com.android.support:appcompat-v7:${versions.supportLib}"
-    implementation "com.android.support:design:${versions.supportLib}"
-    implementation "com.android.support:support-v13:${versions.supportLib}"
-    implementation "com.android.support:gridlayout-v7:${versions.supportLib}"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
     implementation project(':library')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    kapt 'com.android.databinding:compiler:3.1.1'
 }
 
 kapt {

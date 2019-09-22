@@ -5,7 +5,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'kotlin-kapt'
 apply from: '../dependencies.gradle'
 
-group='com.github.AdityaAnand1'
+group = 'com.github.AdityaAnand1'
 
 android {
     kapt { generateStubs = true }
@@ -35,9 +35,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:appcompat-v7:${versions.supportLib}"
-    implementation "com.android.support:design:${versions.supportLib}"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.android.material:material:1.0.0'
     implementation "com.afollestad.material-dialogs:core:${versions.materialDialogs}"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    kapt 'com.android.databinding:compiler:3.1.1'
 }
