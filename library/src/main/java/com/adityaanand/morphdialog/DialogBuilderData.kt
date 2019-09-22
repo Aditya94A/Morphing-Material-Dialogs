@@ -3,7 +3,7 @@ package com.adityaanand.morphdialog
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.os.Parcelable
-import android.support.annotation.DrawableRes
+import androidx.annotation.DrawableRes
 import kotlinx.android.parcel.Parcelize
 import java.util.*
 

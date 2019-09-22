@@ -1,10 +1,10 @@
 package com.adityaanand.morphdialogsample
 
 import android.content.Intent
-import android.databinding.DataBindingUtil
+import androidx.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
 import com.adityaanand.morphdialog.MorphDialog
