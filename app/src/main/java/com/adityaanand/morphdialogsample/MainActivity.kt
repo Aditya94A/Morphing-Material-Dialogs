@@ -1,17 +1,17 @@
 package com.adityaanand.morphdialogsample
 
 import android.content.Intent
-import androidx.databinding.DataBindingUtil
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.adityaanand.morphdialog.MorphDialog
 import com.adityaanand.morphdialog.interfaces.MorphListCallbackMultiChoice
 import com.adityaanand.morphdialog.interfaces.MorphSingleButtonCallback
 import com.adityaanand.morphdialog.utils.MorphDialogAction
 import com.adityaanand.morphdialogsample.databinding.ActivityMain2Binding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.*
 
 

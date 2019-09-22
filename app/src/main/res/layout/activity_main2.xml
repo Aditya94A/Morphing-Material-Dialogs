@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/android.support.design.widget"
-        xmlns:app1="http://schemas.android.com/apk/res-auto"
-        xmlns:grid="http://schemas.android.com/apk/android.support.v7.widget"
-        xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/android.support.design.widget"
+    xmlns:app1="http://schemas.android.com/apk/res-auto"
+    xmlns:grid="http://schemas.android.com/apk/android.support.v7.widget"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
             app:elevation="6dp"
             app:pressedTranslationZ="12dp"
             app:rippleColor="@android:color/white"
-            grid:layout_columnWeight="1"/>
+            grid:layout_columnWeight="1" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
@@ -39,7 +39,7 @@
             app:elevation="6dp"
             app:pressedTranslationZ="12dp"
             app:rippleColor="@android:color/white"
-            grid:layout_columnWeight="1"/>
+            grid:layout_columnWeight="1" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
@@ -55,7 +55,7 @@
             app:elevation="6dp"
             app:pressedTranslationZ="12dp"
             app:rippleColor="@android:color/white"
-            grid:layout_columnWeight="1"/>
+            grid:layout_columnWeight="1" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
@@ -70,7 +70,7 @@
             app:elevation="6dp"
             app:pressedTranslationZ="12dp"
             app:rippleColor="@android:color/white"
-            grid:layout_columnWeight="1"/>
+            grid:layout_columnWeight="1" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
@@ -84,7 +84,7 @@
             app:elevation="6dp"
             app:pressedTranslationZ="12dp"
             app:rippleColor="@android:color/white"
-            grid:layout_columnWeight="1"/>
+            grid:layout_columnWeight="1" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
@@ -99,7 +99,7 @@
             app:elevation="6dp"
             app:pressedTranslationZ="12dp"
             app:rippleColor="@android:color/white"
-            grid:layout_columnWeight="1"/>
+            grid:layout_columnWeight="1" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
@@ -115,7 +115,7 @@
             app:elevation="6dp"
             app:pressedTranslationZ="12dp"
             app:rippleColor="@android:color/white"
-            grid:layout_columnWeight="1"/>
+            grid:layout_columnWeight="1" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
@@ -130,7 +130,7 @@
             app:elevation="6dp"
             app:pressedTranslationZ="12dp"
             app:rippleColor="@android:color/white"
-            grid:layout_columnWeight="1"/>
+            grid:layout_columnWeight="1" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
@@ -146,6 +146,6 @@
             app:elevation="6dp"
             app:pressedTranslationZ="12dp"
             app:rippleColor="@android:color/white"
-            grid:layout_columnWeight="1"/>
+            grid:layout_columnWeight="1" />
     </RelativeLayout>
 </layout>
