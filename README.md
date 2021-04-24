@@ -58,11 +58,11 @@ In your styles.xml, override the MorphDialog.Base themes (at least one, both if 
  
  ```xml
     <activity
-        android:name="com.adityaanand.morphdialog.MorphDialogActivity"
+        android:name="in.adityaanand.morphdialog.MorphDialogActivity"
         android:theme="@style/MorphDialog.Custom.Light">
     </activity>
     <activity
-        android:name="com.adityaanand.morphdialog.MorphDialogActivityDark"
+        android:name="in.adityaanand.morphdialog.MorphDialogActivityDark"
         android:theme="@style/MorphDialog.Custom.Dark">
     </activity>
  ```
