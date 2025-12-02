@@ -11,7 +11,7 @@ android {
     buildToolsVersion versions.buildTools
 
     buildFeatures {
-        dataBinding = true
+        viewBinding = true
     }
 
     defaultConfig {

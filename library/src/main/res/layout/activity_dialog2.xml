@@ -1,28 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/root"
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:id="@+id/container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginEnd="@dimen/dialog_margin"
-            android:layout_marginLeft="@dimen/dialog_margin"
-            android:layout_marginRight="@dimen/dialog_margin"
-            android:layout_marginStart="@dimen/dialog_margin"
-            android:background="?attr/morph_dialog_background_color"
-            android:elevation="@dimen/default_dialog_elevation"
-            android:orientation="vertical"
-            android:transitionName="morph_transition"
-            tools:targetApi="lollipop">
-
-        </LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/dialog_margin"
+        android:layout_marginLeft="@dimen/dialog_margin"
+        android:layout_marginRight="@dimen/dialog_margin"
+        android:layout_marginStart="@dimen/dialog_margin"
+        android:background="?attr/morph_dialog_background_color"
+        android:elevation="@dimen/default_dialog_elevation"
+        android:orientation="vertical"
+        android:transitionName="morph_transition"
+        tools:targetApi="lollipop">
 
     </LinearLayout>
-</layout>
+
+</LinearLayout>

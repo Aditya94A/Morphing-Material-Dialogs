@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.transition.ArcMotion
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import androidx.databinding.DataBindingUtil
 import com.adityaanand.morphdialog.databinding.ActivityDialog2Binding
 import com.adityaanand.morphdialog.morphutil.MorphDialogToFab
 import com.adityaanand.morphdialog.morphutil.MorphFabToDialog
@@ -24,7 +23,8 @@ open class MorphDialogActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ui = DataBindingUtil.setContentView(this, R.layout.activity_dialog2)
+        ui = ActivityDialog2Binding.inflate(layoutInflater)
+        setContentView(ui.root)
         val params = intent.extras!!
         id = params.getLong(Constants.MORPH_DIALOG_ID)
         val data = params.getParcelable<DialogBuilderData>(Constants.MORPH_DIALOG_BUILDER_DATA)!!
