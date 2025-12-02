@@ -6,6 +6,7 @@ apply from: '../dependencies.gradle'
 group = 'com.github.AdityaAnand1'
 
 android {
+    namespace = "com.adityaanand.morphdialog"
     compileSdkVersion versions.compileSdk
     buildToolsVersion versions.buildTools
 
@@ -26,12 +27,21 @@ android {
             consumerProguardFiles 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = '11'
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
     implementation "com.afollestad.material-dialogs:core:${versions.materialDialogs}"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }

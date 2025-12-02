@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.os.Parcelable
 import androidx.annotation.DrawableRes
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 import java.util.*
 
 /**

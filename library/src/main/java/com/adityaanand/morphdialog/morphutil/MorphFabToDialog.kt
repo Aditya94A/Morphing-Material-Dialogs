@@ -105,7 +105,7 @@ class MorphFabToDialog : ChangeBounds {
         fun fetchAccentColor(context: Context): Int {
             val typedValue = TypedValue()
 
-            val a = context.obtainStyledAttributes(typedValue.data, intArrayOf(R.attr.colorAccent))
+            val a = context.obtainStyledAttributes(typedValue.data, intArrayOf(android.R.attr.colorAccent))
             val color = a.getColor(0, 0)
 
             a.recycle()
