@@ -40,9 +40,9 @@ class DialogActivity : AppCompatActivity() {
         val positive = params.getString("positive")
         val negative = params.getString("negative")
         val builder = MaterialDialog.Builder(this)
-                .content(content)
-                .title(title)
-                .positiveText(positive)
+                .content(content ?: "")
+                .title(title ?: "")
+                .positiveText(positive ?: "")
                 .onPositive { dialog, which ->
                     this@DialogActivity.setResult(Activity.RESULT_OK)//useful if you care about startActivityForResult()'s result
                     this@DialogActivity.closeDialog()

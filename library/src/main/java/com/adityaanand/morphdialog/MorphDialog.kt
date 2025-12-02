@@ -44,10 +44,10 @@ class MorphDialog private constructor(var builder: Builder) {
             handleButtonClick(data.getSerializableExtra(Constants.MORPH_DIALOG_ACTION_TYPE) as MorphDialogAction)
         else if (data.hasExtra(Constants.INTENT_KEY_SINGLE_CHOICE_LIST_ITEM_POSITION))
             handleSingleChoiceItemSelected(data.getIntExtra(Constants.INTENT_KEY_SINGLE_CHOICE_LIST_ITEM_POSITION, -1),
-                    data.getCharSequenceExtra(Constants.INTENT_KEY_SINGLE_CHOICE_LIST_ITEM_TEXT))
+                    data.getCharSequenceExtra(Constants.INTENT_KEY_SINGLE_CHOICE_LIST_ITEM_TEXT) ?: "")
         else if (data.hasExtra(Constants.INTENT_KEY_MULTI_CHOICE_LIST_ITEM_TEXTS))
-            handleMultiChoiceItemSelected(data.getIntegerArrayListExtra(Constants.INTENT_KEY_MULTI_CHOICE_LIST_ITEM_POSITIONS).toTypedArray(),
-                    data.getCharSequenceArrayListExtra(Constants.INTENT_KEY_MULTI_CHOICE_LIST_ITEM_TEXTS).toTypedArray())
+            handleMultiChoiceItemSelected(data.getIntegerArrayListExtra(Constants.INTENT_KEY_MULTI_CHOICE_LIST_ITEM_POSITIONS)?.toTypedArray() ?: emptyArray(),
+                    data.getCharSequenceArrayListExtra(Constants.INTENT_KEY_MULTI_CHOICE_LIST_ITEM_TEXTS)?.toTypedArray() ?: emptyArray())
     }
 
     fun handleButtonClick(actionType: MorphDialogAction) {

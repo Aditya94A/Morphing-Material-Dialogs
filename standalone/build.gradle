@@ -1,11 +1,14 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply from: '../dependencies.gradle'
 
 android {
     compileSdkVersion versions.compileSdk
     buildToolsVersion versions.buildTools
+
+    buildFeatures {
+        dataBinding = true
+    }
 
     defaultConfig {
         applicationId "in.adityaanand.morphdialogstandalone"
@@ -13,16 +16,12 @@ android {
         targetSdkVersion versions.compileSdk
         versionCode versions.publishVersionCode
         versionName versions.publishVersion
-        dataBinding.enabled = true
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-    }
-    androidExtensions {
-        experimental = true
     }
 }
 
